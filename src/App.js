@@ -1,11 +1,41 @@
 import React, { Component } from 'react';
-import { Field, Form, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
+import isAlphanumeric from 'validator/lib/isAlphanumeric';
+import isEmpty from 'validator/lib/isEmpty';
+import isEmail from 'validator/lib/isEmail';
+import isLength from 'validator/lib/isLength';
+import isIn from 'validator/lib/isIn';
+
 import TextInput from './TextInput';
 
-const validate = values => {
+const validate = ({ name = '', username = '', email = '' }) => {
   const errors = {};
-  if (!values.name) {
+  if (isEmpty(name)) {
     errors.name = 'Required';
+  }
+
+  if (isEmpty(username)) {
+    errors.username = 'Required';
+  }
+
+  if (!isAlphanumeric(username)) {
+    errors.username = 'Username can only contain numbers and letters.';
+  }
+
+  if (isIn(username, ['taken1234'])) {
+    errors.username = 'That username is taken.';
+  }
+
+  if (!isLength(username, { min: 6 })) {
+    errors.username = 'Username must be at least 6 characters.';
+  }
+
+  if (isEmpty(email)) {
+    errors.email = 'Required';
+  }
+
+  if (!isEmail(email)) {
+    errors.email = 'Email is invalid.';
   }
 
   return errors;
@@ -22,11 +52,18 @@ class App extends Component {
       <section className="section">
         <div className="container">
           <h1 className="title">redux-form test</h1>
-          <form onSubmit={this.props.handleSubmit}>
+          <form onSubmit={this.props.handleSubmit} novalidate>
             <Field
               name="name"
               placeholder="Foo Bar"
               label="Name"
+              component={TextInput}
+            />
+            <Field
+              name="username"
+              placeholder="fbar1234"
+              label="Username"
+              success="That username is available."
               component={TextInput}
             />
 
@@ -56,7 +93,6 @@ class App extends Component {
                   className="input is-danger"
                   type="email"
                   placeholder="Email input"
-                  value="hello@foo.com"
                 />
                 <span className="icon is-small is-left">
                   <i className="fa fa-envelope" />
