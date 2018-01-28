@@ -82,7 +82,7 @@ class App extends Component {
               <div className="control">
                 <label className="checkbox">
                   <input type="checkbox" />
-                  I agree to the <a href="#">terms and conditions</a>
+                  &nbsp;I agree to the <a href="#">terms and conditions</a>
                 </label>
               </div>
             </div>
@@ -91,11 +91,11 @@ class App extends Component {
               <div className="control">
                 <label className="radio">
                   <input type="radio" name="question" />
-                  Yes
+                  &nbsp;Yes
                 </label>
                 <label className="radio">
                   <input type="radio" name="question" />
-                  No
+                 &nbsp;No
                 </label>
               </div>
             </div>
@@ -108,7 +108,6 @@ class App extends Component {
                 <button className="button is-text">Cancel</button>
               </div>
             </div>
-            Copy
           </form>
         </div>
       </section>
