@@ -1,25 +1,34 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Field, Form, reduxForm } from 'redux-form';
+import TextInput from './TextInput';
+
+const validate = values => {
+  const errors = {};
+  if (!values.name) {
+    errors.name = 'Required';
+  }
+
+  return errors;
+};
 
 class App extends Component {
   // create profile
-  // name
+  // name (required,
   // email
   // password
   // password confirm
-  render () {
+  render() {
     return (
       <section className="section">
         <div className="container">
-          <h1 className="title">
-            redux-form test
-          </h1>
-          <form>
-            <div className="field">
-              <label className="label">Name</label>
-              <div className="control">
-                <input className="input" type="text" placeholder="Text input" />
-              </div>
-            </div>
+          <h1 className="title">redux-form test</h1>
+          <form onSubmit={this.props.handleSubmit}>
+            <Field
+              name="name"
+              placeholder="Foo Bar"
+              label="Name"
+              component={TextInput}
+            />
 
             <div className="field">
               <label className="label">Username</label>
@@ -47,7 +56,7 @@ class App extends Component {
                   className="input is-danger"
                   type="email"
                   placeholder="Email input"
-                  value="hello@"
+                  value="hello@foo.com"
                 />
                 <span className="icon is-small is-left">
                   <i className="fa fa-envelope" />
@@ -95,14 +104,14 @@ class App extends Component {
                 </label>
                 <label className="radio">
                   <input type="radio" name="question" />
-                 &nbsp;No
+                  &nbsp;No
                 </label>
               </div>
             </div>
 
             <div className="field is-grouped">
               <div className="control">
-                <button className="button is-link">Submit</button>
+                <button className="button is-link" type="submit">Submit</button>
               </div>
               <div className="control">
                 <button className="button is-text">Cancel</button>
@@ -115,4 +124,10 @@ class App extends Component {
   }
 }
 
-export default App
+const withForm = reduxForm({
+  form: 'contact',
+  onSubmit: result => console.log(result),
+  validate
+});
+
+export default withForm(App);

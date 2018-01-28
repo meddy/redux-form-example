@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bulma": "^0.6.2",
+    "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -17,5 +18,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.5.0",
+    "prettier": "^1.10.2"
   }
 }
