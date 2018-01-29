@@ -16,25 +16,17 @@ const validate = ({ name = '', username = '', email = '' }) => {
 
   if (isEmpty(username)) {
     errors.username = 'Required';
-  }
-
-  if (!isAlphanumeric(username)) {
+  } else if (!isAlphanumeric(username)) {
     errors.username = 'Username can only contain numbers and letters.';
-  }
-
-  if (isIn(username, ['taken1234'])) {
+  } else if (isIn(username, ['taken1234'])) {
     errors.username = 'That username is taken.';
-  }
-
-  if (!isLength(username, { min: 6 })) {
+  } else if (!isLength(username, { min: 6 })) {
     errors.username = 'Username must be at least 6 characters.';
   }
 
   if (isEmpty(email)) {
     errors.email = 'Required';
-  }
-
-  if (!isEmail(email)) {
+  } else if (!isEmail(email)) {
     errors.email = 'Email is invalid.';
   }
 
@@ -64,45 +56,16 @@ class App extends Component {
               placeholder="fbar1234"
               label="Username"
               success="That username is available."
+              icon="user"
               component={TextInput}
             />
-
-            <div className="field">
-              <label className="label">Username</label>
-              <div className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-success"
-                  type="text"
-                  placeholder="Text input"
-                  value="bulma"
-                />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-user" />
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fa fa-check" />
-                </span>
-              </div>
-              <p className="help is-success">This username is available</p>
-            </div>
-
-            <div className="field">
-              <label className="label">Email</label>
-              <div className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-danger"
-                  type="email"
-                  placeholder="Email input"
-                />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fa fa-exclamation-triangle" />
-                </span>
-              </div>
-              <p className="help is-danger">This email is invalid</p>
-            </div>
+            <Field
+              name="email"
+              placeholder="foo@bar.com"
+              label="Email"
+              icon="envelope"
+              component={TextInput}
+            />
 
             <div className="field">
               <label className="label">Subject</label>
