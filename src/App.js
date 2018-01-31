@@ -6,7 +6,7 @@ import isEmail from 'validator/lib/isEmail';
 import isLength from 'validator/lib/isLength';
 import isIn from 'validator/lib/isIn';
 
-import TextInput from './TextInput';
+import Input from './Input';
 
 const validate = ({ name = '', username = '', email = '' }) => {
   const errors = {};
@@ -49,7 +49,7 @@ class App extends Component {
               name="name"
               placeholder="Foo Bar"
               label="Name"
-              component={TextInput}
+              component={Input}
             />
             <Field
               name="username"
@@ -57,14 +57,14 @@ class App extends Component {
               label="Username"
               success="That username is available."
               icon="user"
-              component={TextInput}
+              component={Input}
             />
             <Field
               name="email"
               placeholder="foo@bar.com"
               label="Email"
               icon="envelope"
-              component={TextInput}
+              component={Input}
             />
 
             <div className="field">

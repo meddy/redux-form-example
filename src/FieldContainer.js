@@ -1,12 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const TextInput = ({
-  input: { value, onChange, name },
-  meta: { error, submitFailed, valid },
+// show error status
+// show success status
+// success message
+// is valid
+const FieldContainer = ({
+  children,
   icon,
   label,
-  placeholder,
+  meta: { error, submitFailed, valid },
   success
 }) => {
   const showError = submitFailed && error;
@@ -20,17 +23,7 @@ const TextInput = ({
           'has-icons-right': showError || valid
         })}
       >
-        <input
-          type="text"
-          className={classNames('input', {
-            'is-danger': showError,
-            'is-success': valid
-          })}
-          placeholder={placeholder}
-          name={name}
-          onChange={onChange}
-          value={value}
-        />
+        {children}
         {!!icon && (
           <span className="icon is-small is-left">
             <i className={classNames('fa', `fa-${icon}`)} />
@@ -53,9 +46,9 @@ const TextInput = ({
   );
 };
 
-TextInput.defaultProps = {
+FieldContainer.defaultProps = {
   success: '',
   icon: ''
 };
 
-export default TextInput;
+export default FieldContainer;
