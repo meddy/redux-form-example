@@ -1,16 +1,15 @@
-import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-// show error status
-// show success status
-// success message
-// is valid
 const FieldContainer = ({
   children,
+  error,
   icon,
   label,
-  meta: { error, submitFailed, valid },
-  success
+  submitFailed,
+  success,
+  valid,
 }) => {
   const showError = submitFailed && error;
   const showSuccess = valid && success;
@@ -46,9 +45,14 @@ const FieldContainer = ({
   );
 };
 
-FieldContainer.defaultProps = {
-  success: '',
-  icon: ''
+FieldContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+  error: PropTypes.string,
+  icon: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  submitFailed: PropTypes.bool.isRequired,
+  success: PropTypes.string,
+  valid: PropTypes.bool.isRequired,
 };
 
 export default FieldContainer;

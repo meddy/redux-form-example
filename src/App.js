@@ -44,7 +44,7 @@ class App extends Component {
       <section className="section">
         <div className="container">
           <h1 className="title">redux-form test</h1>
-          <form onSubmit={this.props.handleSubmit} novalidate>
+          <form onSubmit={this.props.handleSubmit} noValidate>
             <Field
               name="name"
               placeholder="Foo Bar"
