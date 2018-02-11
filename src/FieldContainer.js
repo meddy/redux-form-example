@@ -19,7 +19,7 @@ const FieldContainer = ({
       <div
         className={classNames('control', {
           'has-icons-left': !!icon,
-          'has-icons-right': showError || valid
+          'has-icons-right': showError || valid,
         })}
       >
         {children}

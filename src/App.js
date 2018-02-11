@@ -7,6 +7,7 @@ import isLength from 'validator/lib/isLength';
 import isIn from 'validator/lib/isIn';
 
 import Input from './Input';
+import Select from './Select';
 
 const validate = ({ name = '', username = '', email = '' }) => {
   const errors = {};
@@ -66,18 +67,12 @@ class App extends Component {
               icon="envelope"
               component={Input}
             />
-
-            <div className="field">
-              <label className="label">Subject</label>
-              <div className="control">
-                <div className="select">
-                  <select>
-                    <option>Select dropdown</option>
-                    <option>With options</option>
-                  </select>
-                </div>
-              </div>
-            </div>
+            <Field name="subject" label="Subject" component={Select}>
+              <option>Select</option>
+              <option value="business">Business Development</option>
+              <option value="marketing">Marketing</option>
+              <option value="sales">Sales</option>
+            </Field>
 
             <div className="field">
               <label className="label">Message</label>
