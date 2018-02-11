@@ -9,7 +9,7 @@ import isIn from 'validator/lib/isIn';
 import Input from './Input';
 import Select from './Select';
 
-const validate = ({ name = '', username = '', email = '' }) => {
+const validate = ({ name = '', username = '', email = '', subject = '' }) => {
   const errors = {};
   if (isEmpty(name)) {
     errors.name = 'Required';
@@ -29,6 +29,10 @@ const validate = ({ name = '', username = '', email = '' }) => {
     errors.email = 'Required';
   } else if (!isEmail(email)) {
     errors.email = 'Email is invalid.';
+  }
+
+  if (isEmpty(subject)) {
+    errors.subject = 'Required';
   }
 
   return errors;

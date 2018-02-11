@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FieldContainer from './FieldContainer';
@@ -20,7 +21,12 @@ const Select = ({
       submitFailed={submitFailed}
       valid={valid}
     >
-      <div className="select">
+      <div
+        className={classNames('select', {
+          'is-danger': submitFailed && error,
+          'is-success': valid,
+        })}
+      >
         <select onChange={onChange}>
           {React.Children.map(children, assignSelected)}
         </select>
@@ -33,7 +39,6 @@ Select.propTypes = {
   input: PropTypes.shape(fieldInputPropTypes),
   label: PropTypes.string.isRequired,
   meta: PropTypes.shape(fieldMetaPropTypes),
-  success: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element),
 };
 
